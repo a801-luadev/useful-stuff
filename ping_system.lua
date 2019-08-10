@@ -1,3 +1,11 @@
+--[[
+		Note:
+	I've been running some tests and it seems like running ping.checkPings()
+	in a lower time (with lowerSyncDelay) makes it more accurate. I've been
+	running it every 26ms and it is pretty more accurate than 333ms, even tho
+	the synchronization packets are being sent every 400ms.
+]]--
+
 local ping
 do
 	local room = tfm.get.room -- this table is not changed by the API
