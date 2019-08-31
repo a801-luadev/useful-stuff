@@ -1,6 +1,5 @@
 local MapFactory
 do
-	local random = math.random
 	local tag_to_xml
 
 	tag_to_xml = function(tag)
