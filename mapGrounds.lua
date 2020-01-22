@@ -1,4 +1,4 @@
-local find, gmatch = string.find, string.gmatch
+local find, sub, gmatch = string.find, string.sub, string.gmatch
 
 local split = function(str, delimiter, f, isPlain)
 	local out, index = { }, 0
