@@ -37,12 +37,12 @@ do
 
 	getGrounds = function()
 		grounds = { }
+		local groundIndex = 0
 
 		local xml = tfm.get.room.xmlMapInfo
 		if xml then
 			xml = xml.xml
 
-			local groundIndex = 0
 			for groundData in gmatch(xml, "<S (.-)/>") do
 				groundIndex = groundIndex + 1
 				grounds[groundIndex] = { }
@@ -50,9 +50,8 @@ do
 					grounds[groundIndex][attributeName] = (tonumber(value) or (find(value, ',', 1, true) and split(value, ',', getValue, true)) or value)
 				end
 			end
-			return groundIndex
 		end
-		return 0
+		return groundIndex
 	end
 end
 
