@@ -30,6 +30,8 @@ do
 				end
 			end
 		end
+
+		return free, guests
 	end
 end
 
