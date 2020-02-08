@@ -11,7 +11,7 @@ do
 	local isGuest = function(playerName, playerData)
 		return
 			sub(playerName, 1, 1) == '*' or
-			(currentTime - playerData.registrationDate) >= fiveDays
+			(currentTime - playerData.registrationDate) < fiveDays
 	end
 
 	local killPlayer = tfm.exec.killPlayer
