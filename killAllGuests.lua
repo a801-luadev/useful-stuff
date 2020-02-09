@@ -1,4 +1,4 @@
-local killAllGuests
+local checkPlayer, killAllGuests
 do
 	local guests = { }
 	local free = { }
@@ -7,6 +7,8 @@ do
 	local fiveDays = 1000 * 60 * 60 * 24 * 5 -- ms * s * m * h * d
 
 	local sub = string.sub
+	local killPlayer = tfm.exec.killPlayer
+	local tfmRoom = tfm.get.room
 
 	local isGuest = function(playerName, playerData)
 		return
@@ -14,25 +16,33 @@ do
 			(currentTime - playerData.registrationDate) < fiveDays
 	end
 
-	local killPlayer = tfm.exec.killPlayer
-	local tfmRoom = tfm.get.room
+	checkPlayer = function(playerName)
+		if guests[playerName] or free[playerName] then
+			return free[playerName] -- False if guest. True otherwise.
+		end
+
+		if isGuest(playerName, tfmRoom[playerName]) then
+			guests[playerName] = true
+			return false
+		else
+			free[playerName] = true
+			return true
+		end
+	end
 
 	killAllGuests = function()
-		for playerName, playerData in next, tfmRoom.playerList do
-			if guests[playerName] then
-				killPlayer(playerName)
-			elseif not free[playerName] then
-				if isGuest(playerName, playerData) then
-					guests[playerName] = true
-					killPlayer(playerName)
-				else
-					free[playerName] = true
-				end
-			end
+		for playerName in next, guests do
+			killPlayer(playerName)
 		end
 
 		return free, guests
 	end
+end
+
+eventNewPlayer = function(playerName)
+	local isValidPlayer = checkPlayer(playerName)
+
+	-- TODO
 end
 
 eventNewGame = function()
