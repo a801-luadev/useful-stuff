@@ -27,7 +27,7 @@ eventLoop = function()
 	-- TODO
 end
 
-eventOnPlayerAndObjectCollision = function(playerDataa, objectData) -- Use this event to handle the collisions
+eventOnPlayerAndObjectCollision = function(playerData, objectData) -- Use this event to handle the collisions
 	-- Example:
-	-- print("The player '" .. playerDataa.playerName .. "' has touched an object of type '" .. objectData.type .. "'")
+	-- print("The player '" .. playerData.playerName .. "' has touched an object of type '" .. objectData.type .. "'")
 end
