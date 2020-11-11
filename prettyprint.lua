@@ -72,3 +72,6 @@ do
 	end
 
 end
+
+local prettyprint = function(obj, opt) print(prettify(obj, 0, opt or {}).res) end
+local p = prettyprint
